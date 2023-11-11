@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post("/insert_board", { :controller => "boards", :action => "create" })
           
   # READ
-  get("/boards", { :controller => "boards", :action => "index" })
+  get("/boards", { :controller => "boards", :action => "home" })
   
   get("/boards/:path_id", { :controller => "boards", :action => "show" })
   
@@ -41,5 +41,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get("/", { :controller => "boards", :action => "index" })
+  get("/", { :controller => "boards", :action => "home" })
 end

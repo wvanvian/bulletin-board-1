@@ -13,6 +13,8 @@ class BoardsController < ApplicationController
     matching_boards = Board.where({ :id => the_id })
 
     @the_board = matching_boards.at(0)
+    @active_posts = Post.where("board_id = ? AND expires_on >= ?", the_id, Date.today)
+    @expired_posts = Post.where("board_id = ? AND expires_on < ?", the_id, Date.today)
 
     render({ :template => "boards/show" })
   end
@@ -50,5 +52,10 @@ class BoardsController < ApplicationController
     the_board.destroy
 
     redirect_to("/boards", { :notice => "Board deleted successfully."} )
+  end
+
+  def home
+    @boards = Board.all()
+    render({ :template => "boards/home" })
   end
 end
